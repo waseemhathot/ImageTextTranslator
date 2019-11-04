@@ -13,8 +13,15 @@
             <option value="en">English</option>
         </select>
 
-        <button class="input-form__button input-form__content" (click)="translate()">Translate</button>
+        <div class="input-form__button-container input-form__content">
+            <button class="button-container__button" (click)="translate()">Translate</button>
+            <div class="button-container__loading-animation" [hidden]="!showLoadingAnimation"></div>
+        </div>       
     </div>
 
+    <div class="content__animation-container">
+        <div class="animation-container__loading-animation"></div>
+    </div>
+    
     <div class="content__translation content__content" dir="auto">{{translatedText}}</div>
 </div>

@@ -13,6 +13,7 @@ export class ImageTextTranslationComponent implements OnInit {
     imageFilePath: any;
     translatedText = '';
     selectedLanguage = 'ar';
+    showLoadingAnimation = false;
 
     constructor(private textDetectionService: TextDetectionService, private textTranslationService: TextTranslationService) { }
 
@@ -24,6 +25,9 @@ export class ImageTextTranslationComponent implements OnInit {
     }
 
     async translate() {
+
+        this.showLoadingAnimation = true;
+
         if (this.imageFilePath) {
 
             const imageText = await this.textDetectionService.getImageTextByFileAsPromise(this.imageFilePath);
@@ -33,6 +37,8 @@ export class ImageTextTranslationComponent implements OnInit {
             const imageText = await this.textDetectionService.getImageTextByUrlAsPromise(this.imageUrl);
             this.translatedText = await this.textTranslationService.getTextTranslationAsPromise(imageText, this.selectedLanguage);
         }
+
+        this.showLoadingAnimation = false;
     }
 
 }
