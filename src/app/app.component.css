@@ -5,7 +5,7 @@
     display: grid;
     grid-template-areas: "menu header" "menu content";
     grid-template-rows: 1fr 9fr;
-    grid-template-columns: 2fr 9fr;
+    grid-template-columns: 0fr 9fr;
     background-color: var(--app-background-color);
 }
 
