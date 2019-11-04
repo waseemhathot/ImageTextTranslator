@@ -373,6 +373,6 @@ textarea {
 
 :root {
     --app-border-color: rgb(101, 119, 134);
-    --app-background-color: black;
+    --app-background-color: #15202B;
     --app-text-color: white;
 }
