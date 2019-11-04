@@ -1,0 +1,19 @@
+<div class="content">
+    <div class="content__input-form">
+        <input type="text" [disabled]="imageFilePath" class="input-form__url-input input-form__content "
+            [(ngModel)]="imageUrl" placeholder="image url" />
+
+        <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput"
+            class="input-form__file-input input-form__content" (change)="onFileSelected($event)">
+
+        <select class="input-form__content" [(ngModel)]="selectedLanguage">
+            <option value="ar">Arabic</option>
+            <option value="he">Hebrew</option>
+            <option value="en">English</option>
+        </select>
+
+        <button class="input-form__button input-form__content" (click)="translate()">Translate</button>
+    </div>
+
+    <div class="content__translation content__content" dir="auto">{{translatedText}}</div>
+</div>

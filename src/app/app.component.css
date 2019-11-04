@@ -1,0 +1,25 @@
+
+.content {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-areas: "menu header" "menu content";
+    grid-template-rows: 1fr 9fr;
+    grid-template-columns: 2fr 9fr;
+    background-color: var(--app-background-color);
+}
+
+.content__header {
+    border-bottom: calc(0.01em + 0.01vmax) solid var(--app-border-color);
+    grid-area: header;
+}
+
+.content__menu {
+    border-right: calc(0.01em + 0.01vmax) solid var(--app-border-color);
+    grid-area: menu;
+}
+
+.content__content {
+    grid-area: content;
+    overflow: hidden;
+}
