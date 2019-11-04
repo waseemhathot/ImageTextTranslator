@@ -3,8 +3,9 @@
         <input type="text" [disabled]="imageFilePath" class="input-form__url-input input-form__content "
             [(ngModel)]="imageUrl" placeholder="image url" />
 
-        <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput"
-            class="input-form__file-input input-form__content" (change)="onFileSelected($event)">
+        <label for="select-file" class="input-form__file-input-label input-form__content">Select Image</label>
+        <input type="file" id="select-file" capture="camera" accept="image/*" name="cameraInput" [hidden]="true"
+            (change)="onFileSelected($event)">
 
         <select class="input-form__content" [(ngModel)]="selectedLanguage">
             <option value="ar">Arabic</option>

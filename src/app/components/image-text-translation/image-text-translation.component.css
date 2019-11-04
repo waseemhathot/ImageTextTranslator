@@ -37,6 +37,20 @@
     color: var(--app-text-color);
 }
 
+.input-form__file-input-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(0.8em + 0.2vmax);
+    font-weight: bold;
+    width: calc(10em + 0.2vmax);
+    height: calc(3em + 0.2vmax);
+    background-color: var(--app-text-color);
+    color: black;
+    cursor: pointer;
+}
+
 .input-form__language-select {
 
 }
