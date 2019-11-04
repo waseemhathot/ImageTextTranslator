@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
+  production: false,
   corsProxy: 'https://cors-anywhere.herokuapp.com/',
   textDetectionApiKey: 'a63803d7e7dd439d9253defd00d6ca39',
   textDetectionApiUrl: 'https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/ocr',
