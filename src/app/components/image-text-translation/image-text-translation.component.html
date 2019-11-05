@@ -4,8 +4,7 @@
             [(ngModel)]="imageUrl" placeholder="image url" />
 
         <label for="select-file" class="input-form__file-input-label input-form__content">Select Image</label>
-        <input type="file" id="select-file"  [hidden]="true"
-            (change)="onFileSelected($event)">
+        <input type="file" id="select-file" [hidden]="true" (change)="onFileSelected($event)">
 
         <label for="take-picture" class="input-form__file-input-label input-form__content">Take Picture</label>
         <input type="file" id="take-picture" capture="camera" accept="image/*" name="cameraInput" [hidden]="true"
@@ -24,12 +23,12 @@
             <div class="button-container__loading-animation" [hidden]="!showLoadingAnimation"></div>
             <fa-icon class="icon error-icon" [icon]="faTimes" [hidden]="!showErrorMark"></fa-icon>
             <fa-icon class="icon check-mark-icon" [icon]="faCheck" [hidden]="!showCheckMark"></fa-icon>
-        </div>       
+        </div>
     </div>
 
     <div class="content__animation-container">
         <div class="animation-container__loading-animation"></div>
     </div>
-    
+
     <div class="content__translation content__content" dir="auto">{{translatedText}}</div>
 </div>
