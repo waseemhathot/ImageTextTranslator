@@ -117,3 +117,16 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.icon { 
+    margin: calc(0.2em + 0.2vmax);
+    font-size: calc(1.5em + 0.2vmax);
+}
+
+.check-mark-icon { 
+    color: green;
+}
+
+.error-icon { 
+    color: var(--app-error-color);
+}

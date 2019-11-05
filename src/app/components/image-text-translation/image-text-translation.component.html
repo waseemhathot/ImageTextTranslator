@@ -22,6 +22,8 @@
         <div class="input-form__button-container input-form__content">
             <button class="button-container__button" (click)="translate()">Translate</button>
             <div class="button-container__loading-animation" [hidden]="!showLoadingAnimation"></div>
+            <fa-icon class="icon error-icon" [icon]="faTimes" [hidden]="!showErrorMark"></fa-icon>
+            <fa-icon class="icon check-mark-icon" [icon]="faCheck" [hidden]="!showCheckMark"></fa-icon>
         </div>       
     </div>
 

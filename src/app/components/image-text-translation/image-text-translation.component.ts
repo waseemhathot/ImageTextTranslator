@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TextDetectionService } from 'src/app/services/text-detection.service';
 import { TextTranslationService } from 'src/app/services/text-translation.service';
+import { faCheck, faTimes} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-image-text-translation',
@@ -13,7 +14,13 @@ export class ImageTextTranslationComponent implements OnInit {
     imageFilePath: any;
     translatedText = '';
     selectedLanguage = 'ar';
+
     showLoadingAnimation = false;
+    showErrorMark = false;
+    showCheckMark = false;
+
+    faCheck = faCheck;
+    faTimes = faTimes;
 
     constructor(private textDetectionService: TextDetectionService, private textTranslationService: TextTranslationService) { }
 
@@ -24,18 +31,26 @@ export class ImageTextTranslationComponent implements OnInit {
         this.imageFilePath = e.target.files[0];
     }
 
-    async translate() {
-
+    async translate(): Promise<void> {
         this.showLoadingAnimation = true;
+        this.showErrorMark = false;
+        this.showCheckMark = false;
 
-        if (this.imageFilePath) {
+        try {
+            if (this.imageFilePath) {
 
-            const imageText = await this.textDetectionService.getImageTextByFileAsPromise(this.imageFilePath);
-            this.translatedText = await this.textTranslationService.getTextTranslationAsPromise(imageText, this.selectedLanguage);
-        } else {
+                const imageText = await this.textDetectionService.getImageTextByFileAsPromise(this.imageFilePath);
+                this.translatedText = await this.textTranslationService.getTextTranslationAsPromise(imageText, this.selectedLanguage);
+            } else {
 
-            const imageText = await this.textDetectionService.getImageTextByUrlAsPromise(this.imageUrl);
-            this.translatedText = await this.textTranslationService.getTextTranslationAsPromise(imageText, this.selectedLanguage);
+                const imageText = await this.textDetectionService.getImageTextByUrlAsPromise(this.imageUrl);
+                this.translatedText = await this.textTranslationService.getTextTranslationAsPromise(imageText, this.selectedLanguage);
+            }
+            this.showCheckMark = true;
+            this.showLoadingAnimation = false;
+        } catch (err) {
+            this.showErrorMark = true;
+            this.showLoadingAnimation = false;
         }
 
         this.showLoadingAnimation = false;
