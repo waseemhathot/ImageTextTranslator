@@ -4,7 +4,7 @@
             [(ngModel)]="imageUrl" placeholder="image url" />
 
         <label for="select-file" class="input-form__file-input-label input-form__content">Select Image</label>
-        <input type="file" id="select-file" [hidden]="true"
+        <input type="file" id="select-file" accept="image/*" capture="filesystem" [hidden]="true"
             (change)="onFileSelected($event)">
 
         <label for="take-picture" class="input-form__file-input-label input-form__content">Take Picture</label>
