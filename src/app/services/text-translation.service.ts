@@ -11,7 +11,7 @@ export class TextTranslationService {
     async getTextTranslationAsPromise(text: string, lang: string): Promise<string> {
         const data: any = await this.httpClient
             // tslint:disable-next-line: max-line-length
-            .get(`${environment.corsProxy}${environment.textTranslationApiUrl}?key=${environment.textTranslationApiKey}&text=${encodeURI(text)}&lang=${lang}`)
+            .get(`${environment.textTranslationApiUrl}?key=${environment.textTranslationApiKey}&text=${encodeURI(text)}&lang=${lang}`)
             .toPromise();
         return this.getTextFomYandexJSON(data);
     }
