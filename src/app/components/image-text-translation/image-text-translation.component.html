@@ -1,34 +1,3 @@
 <div class="content">
-    <div class="content__input-form">
-        <input type="text" [disabled]="imageFilePath" class="input-form__url-input input-form__content "
-            [(ngModel)]="imageUrl" placeholder="image url" />
-
-        <label for="select-file" class="input-form__file-input-label input-form__content">Select Image</label>
-        <input type="file" id="select-file" [hidden]="true" (change)="onFileSelected($event)">
-
-        <label for="take-picture" class="input-form__file-input-label input-form__content">Take Picture</label>
-        <input type="file" id="take-picture" capture="camera" accept="image/*" name="cameraInput" [hidden]="true"
-            (change)="onFileSelected($event)">
-
-        <select class="input-form__content" [(ngModel)]="selectedLanguage">
-            <option value="ar">Arabic</option>
-            <option value="he">Hebrew</option>
-            <option value="en">English</option>
-            <option value="es">Spanish</option>
-            <option value="vi">Veitnamese</option>
-        </select>
-
-        <div class="input-form__button-container input-form__content">
-            <button class="button-container__button" (click)="translate()">Translate</button>
-            <div class="button-container__loading-animation" [hidden]="!showLoadingAnimation"></div>
-            <fa-icon class="icon error-icon" [icon]="faTimes" [hidden]="!showErrorMark"></fa-icon>
-            <fa-icon class="icon check-mark-icon" [icon]="faCheck" [hidden]="!showCheckMark"></fa-icon>
-        </div>
-    </div>
-
-    <div class="content__animation-container">
-        <div class="animation-container__loading-animation"></div>
-    </div>
-
-    <div class="content__translation content__content" dir="auto">{{translatedText}}</div>
+    <span class="content__text" dir="auto">{{ translatedText$ | async }}</span>
 </div>

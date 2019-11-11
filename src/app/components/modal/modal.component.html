@@ -1,0 +1,5 @@
+<div class="modal" [ngClass]="modalIsOpened ? 'modal-opened' : 'modal-closed'">
+    <ng-content></ng-content>
+</div>
+
+<div class="modal-background" [ngClass]="modalIsOpened ? 'modal-opened' : 'modal-closed'"></div>

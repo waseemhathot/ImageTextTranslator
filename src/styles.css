@@ -377,4 +377,5 @@ textarea {
     --app-text-color: white;
     --app-error-color: rgb(224, 36, 36);
     --app-success-color: rgb(124,252,0);
+    --app-icon-color: #38A1F3;
 }

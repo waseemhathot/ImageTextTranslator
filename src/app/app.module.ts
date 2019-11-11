@@ -10,12 +10,18 @@ import { ImageTextTranslationComponent } from './components/image-text-translati
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HeaderComponent } from './components/header/header.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    ImageTextTranslationComponent
+    ImageTextTranslationComponent,
+    HeaderComponent,
+    ModalComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,11 @@
+.content {
+    width: 100%;
+    height: 100%;
+    padding: calc(0.4em + 0.2vmax);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: calc(1.1em + 0.2vmax);
+    font-weight: bold;
+}
