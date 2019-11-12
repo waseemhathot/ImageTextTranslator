@@ -379,13 +379,3 @@ textarea {
     --app-success-color: rgb(124,252,0);
     --app-icon-color: #38A1F3;
 }
-
-@media (max-width: 500px) {
-    img {
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        -o-transform: rotate(90deg);
-        transform: rotate(90deg);
-    }
-}

@@ -34,14 +34,15 @@ export class CanvasComponent implements OnInit, AfterViewInit {
             image.src = this.canvasInfo.image;
 
         } else {
-            const reader = new FileReader();
-            reader.readAsDataURL(this.canvasInfo.image);
-            reader.onload = (evt: any) => {
+            image.src = URL.createObjectURL(this.canvasInfo.image);
+            // const reader = new FileReader();
+            // reader.readAsDataURL(this.canvasInfo.image);
+            // reader.onload = (evt: any) => {
 
-                if (evt.target.readyState === FileReader.DONE) {
-                    image.src = evt.target.result as string;
-                }
-            };
+            //     if (evt.target.readyState === FileReader.DONE) {
+            //         image.src = evt.target.result as string;
+            //     }
+            // };
         }
     }
 
@@ -59,7 +60,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
             line.boundingBox[2],
             line.boundingBox[3]);
         ctx.fillStyle = '#fff';
-        ctx.font = 'calc(0.9em + 0.2vmax) arial';
-        ctx.fillText(line.text, line.boundingBox[0], line.boundingBox[1] - (-12));
+        ctx.font = 'calc(1em + 0.2vmax) arial';
+        ctx.fillText(line.text, line.boundingBox[0], line.boundingBox[1] - (-14));
     }
 }
