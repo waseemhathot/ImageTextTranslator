@@ -14,13 +14,15 @@ export class TextTranslationService {
 
     constructor(private httpClient: HttpClient) { }
 
-    async getTextTranslationAsPromise(text: string, lang: string): Promise<void> {
+    async getTextTranslationAsPromise(text: string, lang: string): Promise<string> {
         const data: any = await this.httpClient
             // tslint:disable-next-line: max-line-length
             .get(`${environment.textTranslationApiUrl}?key=${environment.textTranslationApiKey}&text=${encodeURI(text)}&lang=${lang}`)
             .toPromise();
 
-        this._translatedText.next(this.getTextFomYandexJSON(data));
+        const translatedText = this.getTextFomYandexJSON(data);
+        this._translatedText.next(translatedText);
+        return translatedText;
     }
 
     private getTextFomYandexJSON(data: any): string {

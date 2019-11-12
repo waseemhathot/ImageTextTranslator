@@ -3,6 +3,7 @@ import { faLanguage, faImage, faFileImage, faCamera } from '@fortawesome/free-so
 import { TextDetectionService } from 'src/app/services/text-detection.service';
 import { TextTranslationService } from 'src/app/services/text-translation.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { CanvasBuildingService } from 'src/app/services/canvas-building.service';
 
 @Component({
     selector: 'app-menu',
@@ -22,7 +23,7 @@ export class MenuComponent implements OnInit {
     showLoadingAnimation = false;
 
     // tslint:disable-next-line: max-line-length
-    constructor(private textDetectionService: TextDetectionService, private textTranslationService: TextTranslationService, private modalService: ModalService) { }
+    constructor(private textDetectionService: TextDetectionService, private textTranslationService: TextTranslationService, private modalService: ModalService, private canvasBuildingService: CanvasBuildingService) { }
 
     ngOnInit() {
     }
@@ -49,9 +50,11 @@ export class MenuComponent implements OnInit {
         this.modalService.open('loading-animation-modal');
 
         try {
-            const imageText = await this.textDetectionService.getImageTextByUrlAsPromise(this.selectedUrl);
-            await this.textTranslationService.getTextTranslationAsPromise(imageText, this.selectedLanguage);
-            this.modalService.close('loading-animation-modal');
+            await this.canvasBuildingService.getTransTextPosArrayByUrl(this.selectedUrl, this.selectedLanguage);
+
+            // const imageText = await this.textDetectionService.getImageTextByUrlAsPromise(this.selectedUrl);
+            // await this.textTranslationService.getTextTranslationAsPromise(imageText, this.selectedLanguage);
+            // this.modalService.close('loading-animation-modal');
 
         } catch (err) {
             this.modalService.close('loading-animation-modal');

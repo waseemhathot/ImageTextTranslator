@@ -18,7 +18,7 @@
         </label>
 
         <label for="select-file" class="container-item">Image File</label>
-        <input type="file" id="select-file" hidden (change)="onFileSelected($event)">
+        <input type="file" id="select-file" hidden (input)="onFileSelected($event)">
     </div>
 
     <div class="content__menu-item-containter menu-item">
@@ -28,7 +28,7 @@
 
         <label for="take-picture" class="container-item">Take Picture</label>
         <input type="file" id="take-picture"  capture="camera" accept="image/*"
-            name="cameraInput" [hidden]="true" (change)="onFileSelected($event)">
+            name="cameraInput" [hidden]="true" (input)="onFileSelected($event)">
     </div>
 
     <div class="content__menu-item-containter menu-item">

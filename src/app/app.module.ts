@@ -13,6 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './components/header/header.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { CanvasComponent } from './components/canvas/canvas.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MenuComponent } from './components/menu/menu.component';
     ImageTextTranslationComponent,
     HeaderComponent,
     ModalComponent,
-    MenuComponent
+    MenuComponent,
+    CanvasComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
 <div class="content">
-    <span class="content__text" dir="auto">{{ translatedText$ | async }}</span>
+    <!-- <span class="content__text" dir="auto">{{ translatedText$ | async }}</span> -->
+    <app-canvas *ngIf="canvas" [canvasInfo]="canvas"></app-canvas>
 </div>
