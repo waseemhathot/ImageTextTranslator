@@ -37,6 +37,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
             const reader = new FileReader();
             reader.readAsDataURL(this.canvasInfo.image);
             reader.onload = (evt: any) => {
+
                 if (evt.target.readyState === FileReader.DONE) {
                     image.src = evt.target.result as string;
                 }
