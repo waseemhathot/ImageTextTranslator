@@ -34,6 +34,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
             image.src = this.canvasInfo.image;
 
         } else {
+            window.alert(URL.createObjectURL(this.canvasInfo.image));
             image.src = URL.createObjectURL(this.canvasInfo.image);
             // const reader = new FileReader();
             // reader.readAsDataURL(this.canvasInfo.image);
