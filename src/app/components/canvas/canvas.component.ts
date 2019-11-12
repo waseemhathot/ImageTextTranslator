@@ -24,15 +24,25 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
         const image = new Image();
         image.onload = _ => {
-            // this.ctx.canvas.width = Math.min(image.width, window.innerWidth || 0);
-            // this.ctx.canvas.height = Math.min(image.height, window.innerHeight || 0);
             this.ctx.canvas.width = image.width;
             this.ctx.canvas.height = image.height;
             this.ctx.drawImage(image, 0, 0);
-            // this.ctx.translate(this.ctx.canvas.width, 0);
             this.drawTranslatedLines(this.ctx, this.canvasInfo.linesWithPositionArray);
         };
-        image.src = this.canvasInfo.image;
+
+        if (typeof this.canvasInfo.image === 'string') {
+            image.src = this.canvasInfo.image;
+
+        } else {
+            const reader = new FileReader();
+            reader.readAsDataURL(this.canvasInfo.image);
+
+            reader.onload = (evt) => {
+                if (evt.target.readyState === FileReader.DONE) {
+                    image.src = evt.target.result as string;
+                }
+            };
+        }
     }
 
     drawTranslatedLines(ctx: CanvasRenderingContext2D, lines: Line[]) {
