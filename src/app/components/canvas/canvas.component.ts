@@ -36,12 +36,12 @@ export class CanvasComponent implements OnInit, AfterViewInit {
         } else {
             const reader = new FileReader();
             reader.readAsDataURL(this.canvasInfo.image);
-
-            reader.onload = (evt: any) => {
-                if (evt.target.readyState === FileReader.DONE) {
-                    image.src = evt.target.result as string;
-                }
-            };
+            image.src = reader.result as string;
+            // reader.onload = (evt: any) => {
+            //     if (evt.target.readyState === FileReader.DONE) {
+            //         image.src = evt.target.result as string;
+            //     }
+            // };
         }
     }
 
