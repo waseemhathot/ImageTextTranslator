@@ -29,3 +29,16 @@
     display: none;
 }
 
+.content__message-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:  center;
+}
+
+.message-container__text {
+
+}
+

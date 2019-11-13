@@ -40,8 +40,6 @@ export class MenuComponent implements OnInit {
             this.canvasBuildingService.clearCanvas();
             await this.canvasBuildingService.buildCanvasByFile(e.target.files[0], this.selectedLanguage);
             e.target.value = '';
-            // const imageText = await this.textDetectionService.getImageTextByFileAsPromise(e.target.files[0]);
-            // await this.textTranslationService.getTextTranslationAsPromise(imageText, this.selectedLanguage);
             this.modalService.close('loading-animation-modal');
 
         } catch (err) {
@@ -57,8 +55,6 @@ export class MenuComponent implements OnInit {
 
             this.canvasBuildingService.clearCanvas();
             await this.canvasBuildingService.buildCanvasByUrl(this.selectedUrl, this.selectedLanguage);
-            // const imageText = await this.textDetectionService.getImageTextByUrlAsPromise(this.selectedUrl);
-            // await this.textTranslationService.getTextTranslationAsPromise(imageText, this.selectedLanguage);
             this.modalService.close('loading-animation-modal');
 
         } catch (err) {

@@ -25,34 +25,43 @@ export class CanvasComponent implements OnInit, AfterViewInit {
         this.ctx = (this.canvas.nativeElement as HTMLCanvasElement).getContext('2d');
 
         if (typeof this.canvasInfo.image === 'string') {
-            const image = new Image();
-            image.onload = _ => {
-                this.ctx.canvas.width = image.width;
-                this.ctx.canvas.height = image.height;
-                this.ctx.drawImage(image, 0, 0);
-                this.drawTranslatedLines(this.ctx, this.canvasInfo.linesWithPositionArray);
-            };
-            image.src = this.canvasInfo.image;
+            this.drawImageByUrl(this.ctx, this.canvasInfo);
 
         } else {
-
-            loadImage.parseMetaData(this.canvasInfo.image, (data) => {
-                let orientation = 0;
-                if ((data as any).exif) {
-                    orientation = (data as any).exif.get('Orientation');
-                }
-
-                loadImage(this.canvasInfo.image, (img) => {
-                    this.ctx.canvas.width = img.width;
-                    this.ctx.canvas.height = img.height;
-                    this.ctx.drawImage(img, 0, 0);
-                    this.drawTranslatedLines(this.ctx, this.canvasInfo.linesWithPositionArray);
-                }, {
-                    canvas: true,
-                    orientation
-                });
-            });
+            this.drawImageByFile(this.ctx, this.canvasInfo);
         }
+    }
+
+    drawImageByUrl(ctx: CanvasRenderingContext2D, canvasInfo: Canvas) {
+
+        const image = new Image();
+        image.onload = _ => {
+            ctx.canvas.width = image.width;
+            ctx.canvas.height = image.height;
+            ctx.drawImage(image, 0, 0);
+            this.drawTranslatedLines(ctx, canvasInfo.linesWithPositionArray);
+        };
+        image.src = canvasInfo.image;
+    }
+
+    drawImageByFile(ctx: CanvasRenderingContext2D, canvasInfo: Canvas) {
+
+        loadImage.parseMetaData(canvasInfo.image, (data) => {
+            let orientation = 0;
+            if ((data as any).exif) {
+                orientation = (data as any).exif.get('Orientation');
+            }
+
+            loadImage(canvasInfo.image, (img) => {
+                ctx.canvas.width = img.width;
+                ctx.canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+                this.drawTranslatedLines(ctx, canvasInfo.linesWithPositionArray);
+            }, {
+                canvas: true,
+                orientation
+            });
+        });
     }
 
     drawTranslatedLines(ctx: CanvasRenderingContext2D, lines: Line[]) {

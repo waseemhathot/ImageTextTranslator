@@ -15,9 +15,10 @@ export class TextTranslationService {
     constructor(private httpClient: HttpClient) { }
 
     async getTextTranslationAsPromise(text: string, lang: string): Promise<string> {
+        console.log(encodeURIComponent(text));
         const data: any = await this.httpClient
             // tslint:disable-next-line: max-line-length
-            .get(`${environment.textTranslationApiUrl}?key=${environment.textTranslationApiKey}&text=${encodeURI(text)}&lang=${lang}`)
+            .get(`${environment.textTranslationApiUrl}?key=${environment.textTranslationApiKey}&text=${encodeURIComponent(text)}&lang=${lang}`)
             .toPromise();
 
         const translatedText = this.getTextFomYandexJSON(data);

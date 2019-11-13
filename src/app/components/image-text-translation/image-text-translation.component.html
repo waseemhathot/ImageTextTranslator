@@ -1,4 +1,8 @@
 <div class="content">
     <!-- <span class="content__text" dir="auto">{{ translatedText$ | async }}</span> -->
     <app-canvas *ngIf="canvas" [canvasInfo]="canvas"></app-canvas>
+
+    <div *ngIf="!canvas" class="content__message-container">
+        <span class="message-container__text">No image input / Bad Image input or No text found!</span>
+    </div>
 </div>

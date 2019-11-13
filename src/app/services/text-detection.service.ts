@@ -24,7 +24,6 @@ export class TextDetectionService {
         // tslint:disable-next-line: max-line-length
         const data = await this.httpClient.post(environment.textDetectionApiUrl, image, this.getHttpHeadersForFile()).toPromise();
         const text = this.getTextFromComputerVisionJson(data);
-        console.log(text);
         return text;
     }
 
@@ -61,6 +60,7 @@ export class TextDetectionService {
         // tslint:disable-next-line: max-line-length
         const data = await this.httpClient.post(environment.textDetectionApiUrl, image, this.getHttpHeadersForFile()).toPromise();
         const lines = this.getLinesWithPosFromComputerVision(data);
+        console.log(lines);
         return lines;
    }
 

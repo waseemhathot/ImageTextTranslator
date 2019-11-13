@@ -20,6 +20,11 @@ export class CanvasBuildingService {
     async buildCanvasByUrl(imageUrl: string, language: string): Promise<Canvas> {
 
         const lines: Line[] = await this.getTransTextPosArrayByUrl(imageUrl, language);
+        if (!lines) {
+            this._canvas.next(null);
+            return null;
+        }
+
         const canvas: Canvas = {
             image: imageUrl,
             linesWithPositionArray: lines,
@@ -46,12 +51,18 @@ export class CanvasBuildingService {
     private async getTransTextPosArrayByUrl(imageUrl: string, language: string): Promise<Line[]> {
 
         try {
+
             const imageTextLines: Line[] = await this.textDetectionService.getImageTextLinesByUrl(imageUrl);
+            if (imageTextLines.length === 0) {
+                throw new Error();
+            }
 
             for (const line of imageTextLines) {
                 const lineText = await this.textTranslationService.getTextTranslationAsPromise(line.text, language);
                 line.text = lineText[0];
             }
+
+
             return imageTextLines;
 
         } catch {
@@ -62,13 +73,25 @@ export class CanvasBuildingService {
     private async getTransTextPosArrayByFile(image: any, language: string): Promise<Line[]> {
 
         try {
-            const imageTextLines: Line[] = await this.textDetectionService.getImageTextLinesByFile(image);
 
-            for (const line of imageTextLines) {
-                const lineText = await this.textTranslationService.getTextTranslationAsPromise(line.text, language);
-                line.text = lineText[0];
+            const imageTextLines: Line[] = await this.textDetectionService.getImageTextLinesByFile(image);
+            if (imageTextLines.length === 0) {
+                throw new Error();
             }
-            return imageTextLines;
+
+            const translatedLines: Line[] = [];
+            for (const line of imageTextLines) {
+
+                const lineTranslatedText = await this.textTranslationService.getTextTranslationAsPromise(line.text, language);
+                const translatedLine: Line = {
+                    boundingBox: line.boundingBox,
+                    text: lineTranslatedText[0],
+                };
+
+                translatedLines.push(translatedLine);
+            }
+
+            return translatedLines;
 
         } catch {
             return null;
