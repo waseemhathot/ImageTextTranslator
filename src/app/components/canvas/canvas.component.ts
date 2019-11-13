@@ -24,16 +24,16 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         this.ctx = (this.canvas.nativeElement as HTMLCanvasElement).getContext('2d');
 
-        const image = new Image();
-        image.onload = _ => {
-            this.ctx.canvas.width = image.width;
-            this.ctx.canvas.height = image.height;
-            this.ctx.drawImage(image, 0, 0);
-            this.drawTranslatedLines(this.ctx, this.canvasInfo.linesWithPositionArray);
-        };
+        // const image = new Image();
+        // image.onload = _ => {
+        //     this.ctx.canvas.width = image.width;
+        //     this.ctx.canvas.height = image.height;
+        //     this.ctx.drawImage(image, 0, 0);
+        //     this.drawTranslatedLines(this.ctx, this.canvasInfo.linesWithPositionArray);
+        // };
 
         if (typeof this.canvasInfo.image === 'string') {
-            image.src = this.canvasInfo.image;
+            // image.src = this.canvasInfo.image;
 
         } else {
 
@@ -54,12 +54,14 @@ export class CanvasComponent implements OnInit, AfterViewInit {
                     window.alert(orientation);
                 }
 
-                loadImage(this.canvasInfo.image, (canvas) => {
-                    const base64data = (canvas as HTMLCanvasElement).toDataURL('image/jpeg');
-                    image.src = base64data.replace(/^data\:image\/\w+\;base64\,/, '');
+                loadImage(this.canvasInfo.image, (img) => {
+                    this.ctx.canvas.width = img.width;
+                    this.ctx.canvas.height = img.height;
+                    this.ctx.drawImage(img, 0, 0);
+                    this.drawTranslatedLines(this.ctx, this.canvasInfo.linesWithPositionArray);
                 }, {
                     canvas: true,
-                    orientation: orientation
+                    orientation
                 });
             });
             // image.src = URL.createObjectURL(this.canvasInfo.image);
