@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input, ɵCompi
 import { Canvas } from 'src/app/interfaces/canvas';
 import { Line } from 'src/app/interfaces/line';
 import loadImage from 'blueimp-load-image';
+import { OriginalSource } from 'webpack-sources';
 
 @Component({
     selector: 'app-canvas',
@@ -41,7 +42,10 @@ export class CanvasComponent implements OnInit, AfterViewInit {
                 this.ctx.canvas.height = img.height;
                 this.ctx.drawImage(img, 0, 0);
                 this.drawTranslatedLines(this.ctx, this.canvasInfo.linesWithPositionArray);
-            }, {});
+            }, {
+                canvas: true,
+                orientation: 0
+            });
             // image.src = URL.createObjectURL(this.canvasInfo.image);
             // const reader = new FileReader();
             // reader.readAsDataURL(this.canvasInfo.image);
