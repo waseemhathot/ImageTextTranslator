@@ -1,3 +1,8 @@
 
 .canvas {
+    image-orientation: from-image;
+}
+
+img {
+    image-orientation: from-image;
 }
