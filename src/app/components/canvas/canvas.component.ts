@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input, ɵCompiler_compileModuleSync__POST_R3__ } from '@angular/core';
 import { Canvas } from 'src/app/interfaces/canvas';
 import { Line } from 'src/app/interfaces/line';
+import loadImage from 'blueimp-load-image';
 
 @Component({
     selector: 'app-canvas',
@@ -22,20 +23,26 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         this.ctx = (this.canvas.nativeElement as HTMLCanvasElement).getContext('2d');
 
-        const image = new Image();
-        image.onload = _ => {
-            this.ctx.canvas.width = image.width;
-            this.ctx.canvas.height = image.height;
-            this.ctx.drawImage(image, 0, 0);
-            this.drawTranslatedLines(this.ctx, this.canvasInfo.linesWithPositionArray);
-        };
+        // const image = new Image();
+        // image.onload = _ => {
+        //     this.ctx.canvas.width = image.width;
+        //     this.ctx.canvas.height = image.height;
+        //     this.ctx.drawImage(image, 0, 0);
+        //     this.drawTranslatedLines(this.ctx, this.canvasInfo.linesWithPositionArray);
+        // };
 
         if (typeof this.canvasInfo.image === 'string') {
-            image.src = this.canvasInfo.image;
+            // image.src = this.canvasInfo.image;
 
         } else {
 
-            image.src = URL.createObjectURL(this.canvasInfo.image);
+            loadImage(this.canvasInfo.image, (img) => {
+                this.ctx.canvas.width = img.width;
+                this.ctx.canvas.height = img.height;
+                this.ctx.drawImage(img, 0, 0);
+                this.drawTranslatedLines(this.ctx, this.canvasInfo.linesWithPositionArray);
+            }, {});
+            // image.src = URL.createObjectURL(this.canvasInfo.image);
             // const reader = new FileReader();
             // reader.readAsDataURL(this.canvasInfo.image);
             // reader.onload = (evt: any) => {
