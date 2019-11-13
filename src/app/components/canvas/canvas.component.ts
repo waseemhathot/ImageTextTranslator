@@ -71,7 +71,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
         ctx.fillStyle = '#000';
         ctx.fillRect(x, y, width, height);
         ctx.fillStyle = '#fff';
-        ctx.font = '3vmax arial';
+        ctx.font = 'calc(2.5em + 0.2vmax) arial';
         ctx.fillText(line.text, x, y - (- height));
     }
 
