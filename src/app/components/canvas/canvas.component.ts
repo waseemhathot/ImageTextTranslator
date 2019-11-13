@@ -63,13 +63,16 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     }
 
     drawLine(ctx: CanvasRenderingContext2D, line: Line) {
+        const x = line.boundingBox[0];
+        const y = line.boundingBox[1];
+        const width = line.boundingBox[2];
+        const height = line.boundingBox[3];
+
         ctx.fillStyle = '#000';
-        ctx.fillRect(line.boundingBox[0],
-            line.boundingBox[1],
-            line.boundingBox[2],
-            line.boundingBox[3]);
+        ctx.fillRect(x, y, width, height);
         ctx.fillStyle = '#fff';
-        ctx.font = 'calc(1em + 1vmax) arial';
-        ctx.fillText(line.text, line.boundingBox[0], line.boundingBox[1] - (- line.boundingBox[3] / 2));
+        ctx.font = '3vmax arial';
+        ctx.fillText(line.text, x, y - (- height));
     }
+
 }
