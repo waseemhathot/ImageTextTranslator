@@ -37,21 +37,21 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
         } else {
 
-            loadImage(this.canvasInfo.image, (img) => {
-                this.ctx.canvas.width = img.width;
-                this.ctx.canvas.height = img.height;
-                this.ctx.drawImage(img, 0, 0);
-                this.drawTranslatedLines(this.ctx, this.canvasInfo.linesWithPositionArray);
-            }, {
-                canvas: true,
-                orientation: 0
-            });
+            // loadImage(this.canvasInfo.image, (img) => {
+            //     this.ctx.canvas.width = img.width;
+            //     this.ctx.canvas.height = img.height;
+            //     this.ctx.drawImage(img, 0, 0);
+            //     this.drawTranslatedLines(this.ctx, this.canvasInfo.linesWithPositionArray);
+            // }, {
+            //     canvas: true,
+            //     orientation: 0
+            // });
 
             loadImage.parseMetaData(this.canvasInfo.image, (data) => {
                 let orientation = 0;
                 if ((data as any).exif) {
                     orientation = (data as any).exif.get('Orientation');
-                    console.log(orientation);
+                    window.alert(orientation);
                 }
 
                 loadImage(this.canvasInfo.image, (img) => {
