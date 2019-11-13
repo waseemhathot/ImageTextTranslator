@@ -70,9 +70,11 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
         ctx.fillStyle = '#000';
         ctx.fillRect(x, y, width, height);
-        ctx.fillStyle = '#fff';
-        ctx.font = `${height}px arial`;
-        ctx.fillText(line.text, x, y - (- height));
+        ctx.fillStyle = '#f00';
+        ctx.font = `${ 2 * height / 3 }px arial`;
+        const fontYPos: number = (y - (-3 * height / 4));
+        const fontXPos: number = (x - (- width / 7));
+        ctx.fillText(line.text, fontXPos, fontYPos);
     }
 
 }
