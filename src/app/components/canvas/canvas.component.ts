@@ -59,7 +59,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
                     image.src = base64data.replace(/^data\:image\/\w+\;base64\,/, '');
                 }, {
                     canvas: true,
-                    orientation: 0
+                    orientation: orientation
                 });
             });
             // image.src = URL.createObjectURL(this.canvasInfo.image);
