@@ -1,7 +1,7 @@
 <div class="content">
 
     <div class="content__menu-item-containter menu-item">
-        <fa-icon class="icon" [icon]="faLanguage"></fa-icon>
+        <fa-icon class="icon" [icon]="faLanguage" (click)="openModal('select-language-modal')"></fa-icon>
 
         <select class="container-item" [(ngModel)]="selectedLanguage">
             <option value="ar">Arabic</option>
@@ -27,8 +27,8 @@
         </label>
 
         <label for="take-picture" class="container-item">Take Picture</label>
-        <input type="file" id="take-picture"  capture="camera" accept="image/*"
-            name="cameraInput" [hidden]="true" (input)="onFileSelected($event)">
+        <input type="file" id="take-picture" capture="camera" accept="image/*" name="cameraInput" [hidden]="true"
+            (input)="onFileSelected($event)">
     </div>
 
     <div class="content__menu-item-containter menu-item">
@@ -38,14 +38,28 @@
 
     <app-modal id="url-modal">
         <div class="modal-container">
-            <input type="text" [(ngModel)]="selectedUrl" placeholder="image url" />
-            <button (click)="onUrlSelected($event)">Translate</button>
+            <input type="text" class="modal-item" [(ngModel)]="selectedUrl" placeholder="image url" />
+            <button class="modal-item modal-button" (click)="onUrlSelected($event)">Translate</button>
         </div>
     </app-modal>
 
     <app-modal id="loading-animation-modal">
         <div class="modal-container">
             <div class="loading-animation"></div>
+        </div>
+    </app-modal>
+
+    <app-modal id="select-language-modal">
+        <div class="modal-container">
+            <select class="modal-item" [(ngModel)]="selectedLanguage">
+                <option value="ar">Arabic</option>
+                <option value="he">Hebrew</option>
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="vi">Veitnamese</option>
+            </select>
+
+            <button class="modal-item modal-button" type="button" (click)="closeModal('select-language-modal')">Done</button>
         </div>
     </app-modal>
 </div>

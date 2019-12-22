@@ -42,6 +42,14 @@
     justify-content: center;
 }
 
+.modal-item {
+    margin: calc(0.25em + 0.2vmax);
+    font-size: calc(1em + 0.2vmax);
+}
+
+.modal-button {
+    padding: calc(0.2em + 0.2vmax);
+}
 
 .loading-animation {
     margin-left: calc(0.2em + 0.2vmax);

@@ -32,6 +32,10 @@ export class MenuComponent implements OnInit {
         this.modalService.open(id);
     }
 
+    closeModal(id: string) {
+        this.modalService.close(id);
+    }
+
     async onFileSelected(e: any) {
 
         this.modalService.open('loading-animation-modal');
@@ -56,9 +60,18 @@ export class MenuComponent implements OnInit {
             this.canvasBuildingService.clearCanvas();
             await this.canvasBuildingService.buildCanvasByUrl(this.selectedUrl, this.selectedLanguage);
             this.modalService.close('loading-animation-modal');
-
         } catch (err) {
             this.modalService.close('loading-animation-modal');
         }
     }
+
+    openSelectLanguageModal() {
+        this.modalService.open("select-language-modal");
+    }
+
+    closeSelectLanguageModal() {
+        this.modalService.close("select-language-modal");
+    }
+
+
 }
